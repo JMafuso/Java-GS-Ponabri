@@ -1,31 +1,24 @@
-package br.com.fiap.ponabri.model;
+package br.com.fiap.ponabri.dto;
 
 import br.com.fiap.ponabri.model.enums.Status;
 import br.com.fiap.ponabri.model.enums.TipoImovel;
 import br.com.fiap.ponabri.model.enums.TipoRisco;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Getter
-@Setter
-@Table(name = "tb_projeto", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"nome"}, name = "uk_nome_projeto"),
-        @UniqueConstraint(columnNames = {"login"}, name = "uk_login_projeto")
-})
-public class Project implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class ProjectDTO {
     private UUID uuid;
 
     @Column(nullable = false)

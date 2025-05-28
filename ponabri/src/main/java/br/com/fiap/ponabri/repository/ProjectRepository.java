@@ -23,7 +23,7 @@ public interface ProjectRepository extends JpaRepository<Project, UUID> {
 
     List<Project> findByTipoRisco(TipoRisco tipoRisco);
 
-    @Query("SELECT p FROM Project p WHERE p.status = :status AND p.tipoImovel = :tipoImovel")
+    @Query("SELECT p FROM Project p WHERE p.status_disponivel = :status AND p.tipoImovel = :tipoImovel")
     List<Project> findByStatusAndTipoImovel(@Param("status") Status status,
                                             @Param("tipoImovel") TipoImovel tipoImovel);
 
