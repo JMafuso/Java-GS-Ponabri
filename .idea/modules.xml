@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ponabri.iml" filepath="$PROJECT_DIR$/.idea/ponabri.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java-GS-Ponabri.iml" filepath="$PROJECT_DIR$/.idea/Java-GS-Ponabri.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ponabri/ponabri.iml" filepath="$PROJECT_DIR$/ponabri/ponabri.iml" />
     </modules>
   </component>
 </project>
