@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{texto.titulo}">Cadastro de Abrigo</title>
+    <style>
+        .error { color: red; font-size: 14px}
+        .risco-high { background-color: #ffebee !important }
+        .risco-medium { background-color: #fff3e0 !important }
+        .risco-low { background-color: #f1f8e9 !important }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center" th:text="#{texto.titulo}">
+        Cadastro de Abrigo
+    </h2>
+
+    <form th:action="@{/project}" method="post" th:object="${project}">
+        <input type="hidden" th:field="*{uuid}">
+
+        <div class="space-y-4">
+            <!-- Nome do Abrigo -->
+            <div>
+                <label for="nome" class="block text-gray-700 font-medium" th:text="#{texto.label.nome}">
+                    Nome do Abrigo
+                </label>
+                <input th:field="*{nome}" type="text" id="nome"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Nome do abrigo">
+                <li th:each="err : ${#fields.errors('nome')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Nome do Responsável -->
+            <div>
+                <label for="nome_responsavel_abrigo" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.responsavel}">
+                    Nome do Responsável pelo Abrigo
+                </label>
+                <input th:field="*{nome_responsavel_abrigo}" type="text" id="nome_responsavel_abrigo"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Nome do responsável">
+                <li th:each="err : ${#fields.errors('nome_responsavel_abrigo')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Endereço do Abrigo -->
+            <div>
+                <label for="logradouro_abrigo" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.logradouro}">
+                    Logradouro do Abrigo
+                </label>
+                <input th:field="*{logradouro_abrigo}" type="text" id="logradouro_abrigo"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Logradouro">
+                <li th:each="err : ${#fields.errors('logradouro_abrigo')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <div>
+                <label for="bairro_abrigo" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.bairro}">
+                    Bairro do Abrigo
+                </label>
+                <input th:field="*{bairro_abrigo}" type="text" id="bairro_abrigo"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Bairro">
+                <li th:each="err : ${#fields.errors('bairro_abrigo')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <div>
+                <label for="cidade_abrigo" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.cidade}">
+                    Cidade do Abrigo
+                </label>
+                <input th:field="*{cidade_abrigo}" type="text" id="cidade_abrigo"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Cidade">
+                <li th:each="err : ${#fields.errors('cidade_abrigo')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <div>
+                <label for="estado_abrigo" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.estado}">
+                    Estado do Abrigo
+                </label>
+                <input th:field="*{estado_abrigo}" type="text" id="estado_abrigo"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Estado (UF)">
+                <li th:each="err : ${#fields.errors('estado_abrigo')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Capacidade e Ocupação -->
+            <div>
+                <label for="qt_pessoas" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.qt_pessoas}">
+                    Quantidade Atual de Pessoas
+                </label>
+                <input th:field="*{qt_pessoas}" type="number" id="qt_pessoas"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Quantidade de pessoas">
+                <li th:each="err : ${#fields.errors('qt_pessoas')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <div>
+                <label for="capacidade_total" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.capacidade}">
+                    Capacidade Total
+                </label>
+                <input th:field="*{capacidade_total}" type="number" id="capacidade_total"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                       placeholder="Capacidade máxima">
+                <li th:each="err : ${#fields.errors('capacidade_total')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Tipo de Imóvel -->
+            <div>
+                <label for="tipoImovel" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.tipo_imovel}">
+                    Tipo do Imóvel
+                </label>
+                <select th:field="*{tipoImovel}" id="tipoImovel"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="">Selecione o tipo do imóvel</option>
+                    <option th:each="tipo : ${tiposImovel}"
+                            th:value="${tipo}"
+                            th:text="${tipo}"></option>
+                </select>
+                <li th:each="err : ${#fields.errors('tipoImovel')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Tipo de Risco -->
+            <div>
+                <label for="tipoRisco" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.tipo_risco}">
+                    Tipo de Risco Ambiental
+                </label>
+                <select th:field="*{tipoRisco}" id="tipoRisco"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                        th:classappend="${tipoRisco == 'ALAGAMENTO' ? 'risco-high' :
+                                      tipoRisco == 'DESLIZAMENTO' ? 'risco-high' :
+                                      tipoRisco == 'INCENDIO' ? 'risco-high' :
+                                      tipoRisco == 'OUTROS' ? 'risco-low' : ''}">
+                    <option value="">Selecione o risco ambiental</option>
+                    <option th:each="risco : ${tiposRisco}"
+                            th:value="${risco}"
+                            th:text="${risco}"></option>
+                </select>
+                <li th:each="err : ${#fields.errors('tipoRisco')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Status de Disponibilidade -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-2"
+                       th:text="#{texto.label.status_disponivel}">
+                    Status de Disponibilidade
+                </label>
+                <div class="flex space-x-4">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" th:field="*{status_disponivel}" value="true"
+                               class="form-radio h-4 w-4">
+                        <span>Disponível</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" th:field="*{status_disponivel}" value="false"
+                               class="form-radio h-4 w-4">
+                        <span>Indisponível</span>
+                    </label>
+                </div>
+                <li th:each="err : ${#fields.errors('status_disponivel')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <!-- Descrição -->
+            <div>
+                <label for="descricao" class="block text-gray-700 font-medium"
+                       th:text="#{texto.label.descricao}">
+                    Descrição
+                </label>
+                <textarea th:field="*{descricao}" id="descricao"
+                          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                          rows="4"></textarea>
+                <li th:each="err : ${#fields.errors('descricao')}"
+                    th:text="${err}" class="error">ERRO</li>
+            </div>
+
+            <button type="submit" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg
+                         hover:bg-blue-700 transition-colors"
+                    th:text="#{texto.botao.salvar}">
+                Salvar
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

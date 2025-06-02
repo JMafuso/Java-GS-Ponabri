@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Sistema PONABRI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<header class="bg-blue-600 text-white p-4 mb-8" th:fragment="header">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold" th:text="#{texto.titulo.header}">
+            Sistema PONABRI - Abrigos Temporários
+        </div>
+        <nav>
+            <ul class="flex gap-4">
+                <li><a th:href="@{/projetos}" class="hover:underline" th:text="#{texto.link.projetos.header}">Projetos</a></li>
+                <li><a th:href="@{/projetos/novo}" class="hover:underline" th:text="#{texto.link.novo.header}">Novo Projeto</a></li>
+                <li><a th:href="@{/abrigos}" class="hover:underline" th:text="#{texto.link.abrigos.header}">Abrigos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

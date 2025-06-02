@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{project.titulo}">Abrigos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">
+    MENU DO SISTEMA
+</div>
+
+<main class="container mx-auto p-6">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold" th:text="#{project.titulo}">Lista de Abrigos</h1>
+        <a th:href="@{/project/novo}"
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+           th:text="#{project.botao.novo}">Nova Instalação</a>
+    </div>
+
+    <table class="w-full">
+        <thead>
+        <tr class="bg-blue-50">
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.id}">ID</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.nome}">Nome</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.responsavel}">Responsável</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.endereco}">Endereço</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.capacidade}">Capacidade</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.quantidade_pessoas}">Pessoas</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.risco}">Nível de Risco</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.status}">Status</th>
+            <th class="p-3 text-left font-medium" th:text="#{project.tabela.colunas.acao}">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="border-b hover:bg-gray-50 transition-colors" th:each="projeto : ${project}">
+            <td class="p-3" th:text="${projeto.uuid}">UUID</td>
+            <td class="p-3" th:text="${projeto.nome}">Nome</td>
+            <td class="p-3" th:text="${projeto.nome_responsavel_abrigo}">Responsável</td>
+            <td class="p-3" th:text="${projeto.logradouro_abrigo + ', ' + projeto.bairro_abrigo + ', ' + projeto.cidade_abrigo + '-' + projeto.estado_abrigo}">Endereço</td>
+            <td class="p-3" th:text="${projeto.capacidade_total}">Capacidade</td>
+            <td class="p-3" th:text="${projeto.qt_pessoas}">Pessoas</td>
+            <td class="p-3" th:text="#{|tipo_risco.${projeto.tipoRisco}|}">Risco</td>
+            <td class="p-3" th:text="#{|status.${projeto.status}|}">Status</td>
+            <td class="p-3">
+                <div class="flex gap-2">
+                    <a class="text-blue-600 hover:text-blue-800 transition-colors"
+                       th:href="@{/project/editar/{uuid}(uuid=${projeto.uuid})}"
+                       th:text="#{project.botao.editar}">Editar</a>
+                    <a class="text-red-600 hover:text-red-800 transition-colors"
+                       th:href="@{/project/deletar/{uuid}(uuid=${projeto.uuid})}"
+                       th:text="#{project.botao.deletar}">Deletar</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}">
+    RODAPÉ DO SISTEMA
+</div>
+</body>
+</html>
