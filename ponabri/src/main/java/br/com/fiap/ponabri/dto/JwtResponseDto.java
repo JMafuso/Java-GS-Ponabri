@@ -3,10 +3,11 @@ package br.com.fiap.ponabri.dto;
 public class JwtResponseDto {
 
     private String token;
-    private String type = "Bearer";
+    private String username;
 
-    public JwtResponseDto(String token) {
+    public JwtResponseDto(String token, String username) {
         this.token = token;
+        this.username = username;
     }
 
     public String getToken() {
@@ -17,11 +18,11 @@ public class JwtResponseDto {
         this.token = token;
     }
 
-    public String getType() {
-        return type;
+    public String getUsername() {
+        return username;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
